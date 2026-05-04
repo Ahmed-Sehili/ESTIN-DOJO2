@@ -59,7 +59,7 @@ function Login() {
       }
 
       localStorage.setItem("currentUser", JSON.stringify(res.data));
-      navigate("/dashboard");
+      navigate("/Dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "An error occurred during authentication.");
     } finally {
