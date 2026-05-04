@@ -125,7 +125,7 @@ function Login() {
                 />
                 <span
                   onClick={() => setShowPassword((prev) => !prev)}
-                  style={{ cursor: "pointer", color: "rgba(217,203,194,0.5)" }}
+                  style={{ cursor: "pointer", color: "#112250", opacity: 0.5 }}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
