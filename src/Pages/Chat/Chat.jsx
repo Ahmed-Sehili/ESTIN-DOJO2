@@ -40,7 +40,12 @@ export default function Chat({ selectedYear }) {
 
   useEffect(() => {
     socket.on("newMessage", (data) => {
-      setMessages((prev) => [...prev, data]);
+      setMessages((prev) => [...prev, {
+        id: data._id || Date.now(),
+        name: data.sender?.name || data.name || "Unknown",
+        text: data.content || data.text || "",
+        time: new Date(data.createdAt || Date.now()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      }]);
     });
 
     return () => {
