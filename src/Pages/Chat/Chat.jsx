@@ -2,6 +2,7 @@ import { Send, MonitorDot } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import Header from "../../Components/Header/Header.jsx";
 import { io } from "socket.io-client";
+import axios from "axios";
 
 const socket = io("http://localhost:5000");
 
@@ -13,6 +14,29 @@ export default function Chat({ selectedYear }) {
   
   const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
   const currentUserName = currentUser.name || "Anonymous";
+  const token = currentUser.token || "";
+
+  // Load chat history on mount
+  useEffect(() => {
+    const loadHistory = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/chat", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const history = res.data.map((m) => ({
+          id: m._id,
+          name: m.sender?.name || "Unknown",
+          text: m.content,
+          time: new Date(m.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        }));
+        setMessages(history);
+      } catch (err) {
+        console.error("Failed to load chat history", err);
+      }
+    };
+    if (token) loadHistory();
+  }, [token]);
+
 
   useEffect(() => {
     socket.on("newMessage", (data) => {
@@ -28,21 +52,22 @@ export default function Chat({ selectedYear }) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
 
-    const newMessage = {
-      id: Date.now(),
-      name: currentUserName,
-      text: input,
-      time: new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      }),
-    };
-
-    socket.emit("sendMessage", newMessage);
+    const text = input;
     setInput("");
+
+    try {
+      // Persist to DB — the backend will also emit via socket
+      await axios.post(
+        "http://localhost:5000/api/chat",
+        { content: text },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+    } catch (err) {
+      console.error("Failed to send message", err);
+    }
   };
 
   return (
