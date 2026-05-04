@@ -2,7 +2,7 @@ import Footer from '../../Components/Footer/Footer.jsx';
 import styles from "./Login.module.css";
 import logo from "../../assets/dojo.png";
 import { useNavigate } from "react-router-dom";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -122,6 +122,12 @@ function Login() {
                   placeholder="••••••••••••"
                   autoComplete="current-password"
                 />
+                <span
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  style={{ cursor: "pointer", color: "rgba(217,203,194,0.5)" }}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
               </div>
             </div>
 
