@@ -2,6 +2,7 @@ import Header from '../../Components/Header/Header.jsx';
 import styles from './Leaderboard.module.css';
 import pic from '../../assets/pro.jpg';
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Leaderboard() {
   const [selected, setSelected] = useState("All years");
@@ -16,18 +17,29 @@ function Leaderboard() {
     { id: 6, name: "Rania", hours: 30, avatar: pic, year: "1CP" },
   ];
 
-  const [users, setUsers] = useState(() => {
-    const saved = localStorage.getItem("users");
-    try {
-      return saved ? JSON.parse(saved) : defaultUsers;
-    } catch {
-      return defaultUsers;
-    }
-  });
+  const [users, setUsers] = useState(defaultUsers);
 
   useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-  }, [users]);
+    const fetchLeaderboard = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/leaderboard/global");
+        const mappedUsers = res.data.map((u) => ({
+          id: u._id,
+          name: u.name,
+          year: u.year,
+          hours: u.pomodoroStats ? Math.floor(u.pomodoroStats.totalMinutes / 60) : 0,
+          avatar: pic,
+        }));
+        // If empty, fall back to default for demonstration
+        if (mappedUsers.length > 0) {
+          setUsers(mappedUsers);
+        }
+      } catch (err) {
+        console.error("Failed to fetch leaderboard", err);
+      }
+    };
+    fetchLeaderboard();
+  }, []);
 
   const filteredUsers =
     selected === "All years"
