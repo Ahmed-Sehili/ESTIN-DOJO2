@@ -102,9 +102,7 @@ export default function MiniTimer({
         
           <button
           
-            onClick={()=>{
-              console.log(" clicked");
-              onDelete();}}
+            onClick={() => onDelete()}
             className="rounded-full bg-red-500 p-2 text-white hover:brightness-110"
           >
             ✕

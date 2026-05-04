@@ -14,7 +14,8 @@ export default function Dashboard(
   setTimerModule,
   setHasStarted,}
 ) {
-  const [year, setYear] = useState("");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+  const [year, setYear] = useState(currentUser.year || "");
 
   const modulesByYear = {
     "1CP": ["Algebra", "Analysis", "Intro to OS", "Algo & Data structures", "Computer Architecture", "BEW", "Electricity", "French", "Electronics", "Particle mechanics", "English"],
