@@ -135,9 +135,9 @@ We welcome contributions! To contribute:
 
 This project is open source and available under the MIT License.
 
-## 👨‍💻 Author
+## 👨‍💻 Authors
 
-**Rania1411** - [GitHub Profile](https://github.com/Rania1411)
+Rania, Amel, Dounia, Ahlem, Ahmed.
 
 ---
 
