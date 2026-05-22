@@ -47,7 +47,7 @@ export default function Chat({ selectedYear }) {
         text: data.content || data.text || "",
         time: new Date(data.createdAt || Date.now()).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       };
-      // Deduplicate: skip if a message with this _id already exists (own message echoed back)
+    
       setMessages((prev) => {
         if (data._id && prev.some((m) => m.id === data._id)) return prev;
         return [...prev, normalized];
@@ -70,7 +70,7 @@ export default function Chat({ selectedYear }) {
     setInput("");
 
     try {
-      // Persist to DB — the backend will also emit via socket
+     
       await axios.post(
         `${API_URL}/api/chat`,
         { content: text },
@@ -116,20 +116,6 @@ export default function Chat({ selectedYear }) {
             >
               {selectedYear ? `${selectedYear} Main Room` : "Main Room"}
             </h2>
-
-            <div className="flex gap-2">
-              <span
-                className="flex items-center gap-2 text-xs px-4 py-1 rounded-full"
-                style={{
-                  background: "rgba(224,197,143,0.2)",
-                  color: "#0d1b3e",
-                  fontWeight: "500",
-                }}
-              >
-                <MonitorDot size={12} />
-                28 online now
-              </span>
-            </div>
           </div>
 
           <div className="flex-1 overflow-y-auto py-4 flex flex-col gap-4">

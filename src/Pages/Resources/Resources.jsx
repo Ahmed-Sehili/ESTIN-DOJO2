@@ -7,7 +7,7 @@ const YEARS = [
     id: '1CP',
     label: '1CP',
     title: 'Première Année Préparatoire',
-    link: 'https://drive.google.com/drive/folders/1iZgH9IWZUJL0GmV11EAD06qNeBSuXB_O',
+    link: 'https://drive.google.com/drive/folders/1iZgH9IWZUJL0GmV11EAD06qNeBSuXB_O?usp=drive_link',
   },
   {
     id: '2CP',
