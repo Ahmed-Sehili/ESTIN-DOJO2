@@ -7,7 +7,7 @@ const YEARS = [
     id: '1CP',
     label: '1CP',
     title: 'Première Année Préparatoire',
-    link: 'https://drive.google.com/your-1cp-folder',
+    link: 'https://drive.google.com/drive/folders/1iZgH9IWZUJL0GmV11EAD06qNeBSuXB_O',
   },
   {
     id: '2CP',
@@ -19,13 +19,13 @@ const YEARS = [
     id: '1CS',
     label: '1CS',
     title: 'Cycle Supérieur — 1ère année',
-    link: 'https://drive.google.com/your-1cs-folder',
+    link: 'https://drive.google.com/drive/folders/12-upEbqV5zf09KhCPsiXr6Qri9h-3I-u?usp=drive_link',
   },
   {
     id: '2CS',
     label: '2CS',
     title: 'Cycle Supérieur — 2ème année',
-    link: 'https://drive.google.com/your-2cs-folder',
+    link: 'https://drive.google.com/drive/folders/1RC0aQ9_UqxnSMSCupoZJHNGZ2EB2ic_4?usp=drive_link',
   },
  ];
 
