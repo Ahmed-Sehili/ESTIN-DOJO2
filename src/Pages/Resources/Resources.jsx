@@ -13,7 +13,7 @@ const YEARS = [
     id: '2CP',
     label: '2CP',
     title: 'Deuxième Année Préparatoire',
-    link: 'https://drive.google.com/your-2cp-folder',
+    link: 'https://drive.google.com/drive/folders/1GGBscHnhc1Gid7pJPqPvZT3gcjebh_JN?usp=drive_link',
   },
   {
     id: '1CS',
@@ -27,13 +27,7 @@ const YEARS = [
     title: 'Cycle Supérieur — 2ème année',
     link: 'https://drive.google.com/your-2cs-folder',
   },
-  {
-    id: '3CS',
-    label: '3CS',
-    title: 'Cycle Supérieur — 3ème année',
-    link: 'https://drive.google.com/your-3cs-folder',
-  },
-];
+ ];
 
 function Resources() {
   return (
